@@ -1,0 +1,105 @@
+form_armor_homepage:
+    path:     /
+    defaults: { _controller: FormArmorBundle:Accueil:index }
+
+form_armor_formations:
+    path:     /formations/{page}
+    defaults:
+        _controller: FormArmorBundle:Formations:liste
+        page:     1
+    requirements:
+        page: \d*
+
+form_armor_admin:
+    path:     /admin
+    defaults: { _controller: FormArmorBundle:Admin:authentif }
+
+form_armor_admin_plan:
+    path:     /admin/planformation/{page}
+    defaults:
+        _controller: FormArmorBundle:Admin:listePlan
+        page:     1
+    requirements:
+        page: \d*
+
+form_armor_admin_plan_modif:
+    path:     /admin/planformation/modif/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:modifPlan
+
+form_armor_admin_plan_supp:
+    path:     /admin/planformation/supp/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:suppPlan
+
+form_armor_admin_statut:
+    path:     /admin/statut/{page}
+    defaults:
+        _controller: FormArmorBundle:Admin:listeStatut
+        page:     1
+    requirements:
+        page: \d*
+
+form_armor_admin_statut_modif:
+    path:     /admin/statut/modif/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:modifStatut
+
+form_armor_admin_statut_supp:
+    path:     /admin/statut/supp/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:suppStatut
+
+form_armor_admin_client:
+    path:     /admin/client/{page}
+    defaults:
+        _controller: FormArmorBundle:Admin:listeClient
+        page:     1
+    requirements:
+        page: \d*
+
+form_armor_admin_client_modif:
+    path:     /admin/client/modif/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:modifClient
+
+form_armor_admin_client_supp:
+    path:     /admin/client/supp/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:suppClient
+
+form_armor_admin_formation:
+    path:     /admin/formation/{page}
+    defaults:
+        _controller: FormArmorBundle:Admin:listeFormation
+        page:     1
+    requirements:
+        page: \d*
+
+form_armor_admin_formation_modif:
+    path:     /admin/formation/modif/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:modifFormation
+
+form_armor_admin_formation_supp:
+    path:     /admin/formation/supp/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:suppFormation
+
+form_armor_admin_session:
+    path:     /admin/session/{page}
+    defaults:
+        _controller: FormArmorBundle:Admin:listeSession
+        page:     1
+    requirements:
+        page: \d*
+
+form_armor_admin_session_modif:
+    path:     /admin/session/modif/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:modifSession
+
+form_armor_admin_session_supp:
+    path:     /admin/session/supp/{id}
+    defaults:
+        _controller: FormArmorBundle:Admin:suppSession

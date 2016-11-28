@@ -1,0 +1,41 @@
+{% extends "FormArmorBundle::admin_layout.html.twig" %}
+{% block FormArmor_body %}
+	<h2>AFFICHAGE DES STATUTS</h2>
+	<table class="table">
+		<thead>
+		<tr>
+			<th>Identifiant</th>
+			<th>Type</th>
+			<th>Taux Horaire</th>
+			<th>Option</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for statut in lesStatuts %}
+				<tr {# si le nombre de passages dans la boucle est pair #} {% if loop.index is even %} class="success" {% else %} class="info" {% endif %}>
+					<td>{{statut.id}}</td>
+					<td>{{statut.type}}</td>
+					<td>{{statut.tauxHoraire}}</td>
+					<td><a href="{{ path('form_armor_admin_statut_modif', {'id': statut.id}) }}">Modifier</a></td>
+					<td><a href="{{ path('form_armor_admin_statut_supp', {'id': statut.id}) }}">Supprimer</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+	<ul class="pagination">
+		{# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+		{% for p in range(1, nbPages) %}
+			<li{% if p == page %} class="active"{% endif %}>
+				<a href="{{ path('form_armor_admin_statut', {'page': p}) }}">{{ p }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+	
+	<script>
+		$(function() {
+			$('#menu1').attr('class', 'active');
+		});
+	</script>
+	
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    form_armor.example:
+#        class: FormArmorBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
