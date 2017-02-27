@@ -1,0 +1,44 @@
+{% extends "FormArmorBundle::admin_layout.html.twig" %}
+{% block FormArmor_body %}
+	<h2>AFFICHAGE DES PLANS</h2>
+	<table class="table">
+		<thead>
+		<tr>
+      <th>ID Plan</th>
+			<th>ID Client</th>
+			<th>ID Formation</th>
+			<th>Effectue</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for plan in lesPlans %}
+				<tr {# si le nombre de passages dans la boucle est pair #} {% if loop.index is even %} class="success" {% else %} class="info" {% endif %}>
+					<td>{{plan.id}}</td>
+					<td>{{plan.client.nom}}</td>
+					<td>{{plan.formation.libelle}}</td>
+					{% if (plan.effectue == 1) %}
+						<td>Oui</td>
+					{% else %}
+						<td>Non</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<ul class="pagination">
+		{# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+		{% for p in range(1, nbPages) %}
+			<li{% if p == page %} class="active"{% endif %}>
+				<a href="{{ path('form_armor_admin_statut', {'page': p}) }}">{{ p }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+
+	<script>
+		$(function() {
+			$('#menu5').attr('class', 'active');
+		});
+	</script>
+
+{% endblock %}

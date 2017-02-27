@@ -1,23 +1,24 @@
 {% extends "FormArmorBundle::admin_layout.html.twig" %}
 {% block FormArmor_body %}
-	<h2>AFFICHAGE DES PLANS</h2>
+	<h2>AFFICHAGE DES FORMATIONS</h2>
 	<table class="table">
 		<thead>
 		<tr>
-			<th>ID</th>
-			<th>Client</th>
-			<th>Formation</th>
-			<th>Option</th>
+			<th>Id</th>
+			<th>Libelle</th>
+			<th>Niveau</th>
+			<th>Type</th>
+			<th colspan="2">Option</th>
 		</tr>
 		</thead>
 		<tbody>
-			{% for plan in lesPlansFormation %}
+			{% for formation in lesFormations %}
 				<tr {# si le nombre de passages dans la boucle est pair #} {% if loop.index is even %} class="success" {% else %} class="info" {% endif %}>
-					<td>{{plan.id}}</td>
-					<td>{{plan.client.nom}}</td>
-					<td>{{plan.formation.libelle}}</td>
-					<td><a href="{{ path('form_armor_admin_plan_modif', {'id': plan.id}) }}">Modifier</a></td>
-					<td><a href="{{ path('form_armor_admin_plan_supp', {'id': plan.id}) }}">Supprimer</a></td>
+					<td>{{formation.id}}</td>
+					<td>{{formation.libelle}}</td>
+					<td>{{formation.niveau}}</td>
+					<td>{{formation.typeForm}}</td>
+					<td><a href="{{ path('form_armor_admin_inscription_validation', {'id': formation.id}) }}">Voir</a></td>
 				</tr>
 			{% endfor %}
 		</tbody>
@@ -27,14 +28,14 @@
 		{# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
 		{% for p in range(1, nbPages) %}
 			<li{% if p == page %} class="active"{% endif %}>
-				<a href="{{ path('form_armor_admin_plan', {'page': p}) }}">{{ p }}</a>
+				<a href="{{ path('form_armor_admin_formation', {'page': p}) }}">{{ p }}</a>
 			</li>
 		{% endfor %}
 	</ul>
 
 	<script>
 		$(function() {
-			$('#menu5').attr('class', 'active');
+			$('#menu6').attr('class', 'active');
 		});
 	</script>
 

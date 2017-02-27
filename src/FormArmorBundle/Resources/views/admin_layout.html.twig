@@ -22,7 +22,7 @@
 		{# Ici on va définir une banniere et un menu commun à toutes les pages du Bunble FormArmor #}
 			<div class="row">
 				<div class="col-md-12">
-					<img src="{{ asset('images/banniere.jpg') }}" class="img-responsive" />
+					<img src="{{ asset('images/banniere.jpg') }}" style="width:100%" class="img-responsive" />
 				</div>
 			</div>
 			<div class="row">
@@ -35,10 +35,11 @@
 						<ul class="nav navbar-nav">
 						  <li id='menu1'><a href="{{ path('form_armor_admin_statut') }}">Statut</a></li>
 						  <li id='menu2'><a href="{{ path('form_armor_admin_client') }}">Client</a></li>
-						  <li id='menu3'><a href="{{ path('form_armor_admin_formation') }}">Formation</a></li>
+							<li id='menu3'><a href="{{ path('form_armor_admin_formation') }}">Formation</a></li>
 						  <li id='menu4'><a href="{{ path('form_armor_admin_session') }}">Session</a></li>
-						  <li id='menu5'><a href="{{ path('form_armor_admin_plan') }}">Plan de formation</a></li>
-						  <li id='menu6'><a href="#">D&eacute;connexion</a></li>
+							<li id='menu5'><a href="{{ path('form_armor_admin_plan') }}">Plan de formation</a></li>
+							<li id='menu6'><a href="{{ path('form_armor_admin_inscription') }}">Confirmation d'inscription</a></li>
+							<li id='menu7'><a href="#">D&eacute;connexion</a></li>
 						</ul>
 					  </div>
 					</nav>

@@ -20,13 +20,13 @@ class Plan_formation
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	
+
 	/**
 	 * @ORM\ManyToOne (targetEntity="FormArmorBundle\Entity\Client")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
 	private $client;
-	
+
 	/**
 	 * @ORM\ManyToOne (targetEntity="FormArmorBundle\Entity\Formation")
 	 * @ORM\JoinColumn(nullable=false)
@@ -121,5 +121,13 @@ class Plan_formation
     public function getFormation()
     {
         return $this->formation;
+    }
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getClient();
     }
 }

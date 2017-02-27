@@ -5,54 +5,54 @@
 	<div class="well">
 	  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-	  {# Les erreurs générales du formulaire. #}
+	  {# Les erreurs gï¿½nï¿½rales du formulaire. #}
 	  {{ form_errors(form) }}
 
-	  {# Génération du controle de façon détaillée pour l'exemple #}
-		  {# Génération du label. #}
+	  {# Gï¿½nï¿½ration du controle de faï¿½on dï¿½taillï¿½e pour l'exemple #}
+		  {# Gï¿½nï¿½ration du label. #}
 		  {{ form_label(form.formation, "Formation : ", {'label_attr': {'class': 'form-label'}}) }}
-		  {# Affichage des erreurs pour ce champ précis. #}
+		  {# Affichage des erreurs pour ce champ prï¿½cis. #}
 		  {{ form_errors(form.formation) }}
-		  {# Génération de l'input. #}
+		  {# Gï¿½nï¿½ration de l'input. #}
 		  {{ form_widget(form.formation, {'attr': {'class': 'form-control'}}) }}
-	  {# Génération du controle de façon détaillée pour l'exemple #}
-		  {# Génération du label. #}
+	  	{# Gï¿½nï¿½ration du controle de faï¿½on dï¿½taillï¿½e pour l'exemple #}
+		  {# Gï¿½nï¿½ration du label. #}
 		  {{ form_label(form.dateDebut, "Date debut : ", {'label_attr': {'class': 'form-label'}}) }}
-		  {# Affichage des erreurs pour ce champ précis. #}
+		  {# Affichage des erreurs pour ce champ prï¿½cis. #}
 		  {{ form_errors(form.dateDebut) }}
-		  {# Génération de l'input. #}
+		  {# Gï¿½nï¿½ration de l'input. #}
 		  {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control'}}) }}
-	  {# Génération du controle de façon détaillée pour l'exemple #}
-		  {# Génération du label. #}
+	  {# Gï¿½nï¿½ration du controle de faï¿½on dï¿½taillï¿½e pour l'exemple #}
+		  {# Gï¿½nï¿½ration du label. #}
 		  {{ form_label(form.nbPlaces, "Nombre de places : ", {'label_attr': {'class': 'form-label'}}) }}
-		  {# Affichage des erreurs pour ce champ précis. #}
+		  {# Affichage des erreurs pour ce champ prï¿½cis. #}
 		  {{ form_errors(form.nbPlaces) }}
-		  {# Génération de l'input. #}
+		  {# Gï¿½nï¿½ration de l'input. #}
 		  {{ form_widget(form.nbPlaces, {'attr': {'class': 'form-control'}}) }}
-	  {# Génération du controle de façon détaillée pour l'exemple #}
-		  {# Génération du label. #}
+	  {# Gï¿½nï¿½ration du controle de faï¿½on dï¿½taillï¿½e pour l'exemple #}
+		  {# Gï¿½nï¿½ration du label. #}
 		  {{ form_label(form.nbInscrits, "Nombre d'inscrits : ", {'label_attr': {'class': 'form-label'}}) }}
-		  {# Affichage des erreurs pour ce champ précis. #}
+		  {# Affichage des erreurs pour ce champ prï¿½cis. #}
 		  {{ form_errors(form.nbInscrits) }}
-		  {# Génération de l'input. #}
+		  {# Gï¿½nï¿½ration de l'input. #}
 		  {{ form_widget(form.nbInscrits, {'attr': {'class': 'form-control'}}) }}
-	  {# Génération du controle de façon détaillée pour l'exemple #}
-		  {# Génération du label. #}
+	  {# Gï¿½nï¿½ration du controle de faï¿½on dï¿½taillï¿½e pour l'exemple #}
+		  {# Gï¿½nï¿½ration du label. #}
 		  {{ form_label(form.close, "Close : ", {'label_attr': {'class': 'form-label'}}) }}
-		  {# Affichage des erreurs pour ce champ précis. #}
+		  {# Affichage des erreurs pour ce champ prï¿½cis. #}
 		  {{ form_errors(form.close) }}
-		  {# Génération de l'input. #}
+		  {# Gï¿½nï¿½ration de l'input. #}
 		  {{ form_widget(form.close, {'attr': {'class': 'form-control'}}) }}
 	  <br/>
 	  {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
 	  {{ form_widget(form.Valider, {'attr': {'class': 'btn btn-danger'}}) }}
-	  
-	  {# Bouton permettant de revenir à la page précédente sans valider #}
+
+	  {# Bouton permettant de revenir ï¿½ la page prï¿½cï¿½dente sans valider #}
 	  <input type="button" value="Retour" class = "btn btn-primary" onClick="history.go(-1)" />
 
-	  {# Génération automatique des champs pas encore écrits.
-		 Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-		 et tous les champs cachés (type « hidden »). #}
+	  {# Gï¿½nï¿½ration automatique des champs pas encore ï¿½crits.
+		 Dans cet exemple, ce serait le champ CSRF (gï¿½rï¿½ automatiquement par Symfony !)
+		 et tous les champs cachï¿½s (type ï¿½ hidden ï¿½). #}
 	  {{ form_rest(form) }}
 
 	  {# Fermeture de la balise <form> du formulaire HTML #}
@@ -63,5 +63,5 @@
 			$('#menu4').attr('class', 'active');
 		});
 	</script>
-	
+
 {% endblock %}

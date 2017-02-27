@@ -1,0 +1,33 @@
+{% extends "FormArmorBundle::admin_layout.html.twig" %}
+{% block FormArmor_body %}
+	<h2>AFFICHAGE DES CONFIRMATIONS</h2>
+	<table class="table">
+		<thead>
+		<tr>
+			<th>Id</th>
+			<th>Client ID</th>
+			<th>Session de formation ID</th>
+			<th>Date d'inscription</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for confirmation in lesConfirmations %}
+				<tr {# si le nombre de passages dans la boucle est pair #} {% if loop.index is even %} class="success" {% else %} class="info" {% endif %}>
+					<td>{{confirmation.id}}</td>
+					<td>{{confirmation.clientId}}</td>
+					<td>{{confirmation.sessionFormationId}}</td>
+					<td>{{confirmation.dateInscription|date('Y-m-d')}}</td>
+					<td><a href="{{ path('form_armor_admin_client_modif', {'id': confirmation.id}) }}">Accepter</a></td>
+					<td><a href="{{ path('form_armor_admin_client_supp', {'id': confirmation.id}) }}">Refuser</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<script>
+		$(function() {
+			$('#menu6').attr('class', 'active');
+		});
+	</script>
+
+{% endblock %}
