@@ -26,13 +26,13 @@ class Inscription
 	 * @ORM\JoinColumn(nullable=false)
 	 */
 	private $client;
-	
+
 	/**
 	 * @ORM\ManyToOne (targetEntity="FormArmorBundle\Entity\Session_formation")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
 	private $session_formation;
-	
+
     /**
      * @var \DateTime
      *
@@ -40,7 +40,12 @@ class Inscription
      */
     private $dateInscription;
 
-
+    /**
+     * @var \Boolean
+     *
+     * @ORM\Column(name="validation", type="boolean")
+     */
+    private $validation;
     /**
      * Get id
      *
@@ -121,5 +126,28 @@ class Inscription
     public function getSessionFormation()
     {
         return $this->session_formation;
+    }
+
+    /**
+     * Set dateInscription
+     *
+     * @param \Boolean $validation
+     *
+     * @return \Boolean
+     */
+    public function setValidation($validation)
+    {
+        $this->validation = $validation;
+
+        return $this;
+    }
+    /**
+     * Get validation
+     *
+     * @return \Boolean
+     */
+    public function getValidation()
+    {
+      return $this->validation;
     }
 }

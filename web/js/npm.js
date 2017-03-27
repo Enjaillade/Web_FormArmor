@@ -11,3 +11,18 @@ require('../../js/popover.js')
 require('../../js/scrollspy.js')
 require('../../js/tab.js')
 require('../../js/affix.js')
+
+function validInsc(id)
+{
+  if (id != "" && id != null)
+  {
+    $.ajax({
+      url: {{ path('form_armor_admin_inscription_validation', {'id': id}) }},
+      type: 'GET',
+      dataType: HTML,
+      success: function(retour) {
+        alert("xdi");
+      }
+    });
+  }
+}

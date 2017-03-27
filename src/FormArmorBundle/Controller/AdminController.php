@@ -552,39 +552,7 @@ class AdminController extends Controller
     ));
   }
 
-  public function listeConfirmationAction($page)
-  {
-    if ($page < 1)
-    {
-      throw $this->createNotFoundException("La page ".$page." n'existe pas.");
-    }
 
-    // On peut fixer le nombre de lignes avec la ligne suivante :
-    // $nbParPage = 4;
-    // Mais bien sûr il est préférable de définir un paramètre dans "app\config\parameters.yml", et d'y accéder comme ceci :
-    $nbParPage = $this->container->getParameter('nb_par_page');
-
-    // On récupère l'objet Paginator
-    $manager = $this->getDoctrine()->getManager();
-    $rep = $manager->getRepository('FormArmorBundle:Confirmation_inscription');
-    $lesConfirmations = $rep->listeConfirmation($page, $nbParPage);
-
-    // On calcule le nombre total de pages grâce au count($lesSessions) qui retourne le nombre total de sessions
-    $nbPages = ceil(count($lesConfirmations) / $nbParPage);
-
-    // Si la page n'existe pas, on retourne une erreur 404
-    if ($page > $nbPages)
-    {
-      throw $this->createNotFoundException("La page ".$page." n'existe pas.");
-    }
-
-    // On donne toutes les informations nécessaires à la vue
-    return $this->render('FormArmorBundle:Admin:confirmation.html.twig', array(
-      'lesConfirmations' => $lesConfirmations,
-      'nbPages'     => $nbPages,
-      'page'        => $page,
-    ));
-  }
 
   public function afficherInscriptionAction($page)
   {
@@ -600,11 +568,11 @@ class AdminController extends Controller
 
 		// On récupère l'objet Paginator
 		$manager = $this->getDoctrine()->getManager();
-		$rep = $manager->getRepository('FormArmorBundle:Formation');
-		$lesFormations = $rep->listeFormations($page, $nbParPage);
+		$rep = $manager->getRepository('FormArmorBundle:Inscription');
+		$lesInscriptions = $rep->findAll();
 
 		// On calcule le nombre total de pages grâce au count($lesFormations) qui retourne le nombre total de formations
-		$nbPages = ceil(count($lesFormations) / $nbParPage);
+		$nbPages = ceil(count($lesInscriptions) / $nbParPage);
 
 		// Si la page n'existe pas, on retourne une erreur 404
 		if ($page > $nbPages)
@@ -614,7 +582,7 @@ class AdminController extends Controller
 
 		// On donne toutes les informations nécessaires à la vue
 		return $this->render('FormArmorBundle:Admin:inscription.html.twig', array(
-		  'lesFormations' => $lesFormations,
+		  'lesInscriptions' => $lesInscriptions,
 		  'nbPages'     => $nbPages,
 		  'page'        => $page,
 		));
@@ -622,41 +590,19 @@ class AdminController extends Controller
   public function validInscriptAction($id, Request $request) // Affichage du formulaire de modification d'une formation
     {
         // Récupération de la formation d'identifiant $id
-		$em = $this->getDoctrine()->getManager();
-		$rep = $em->getRepository('FormArmorBundle:Confirmation_inscription');
-		$formation = $rep->find($id);
+  		$em = $this->getDoctrine()->getManager();
+  		$rep = $em->getRepository('FormArmorBundle:Inscription');
+  		$formation = $rep->find($id);
 
-		// Création du formulaire à partir de la formation "récupérée"
-		$form   = $this->get('form.factory')->create(FormationType::class, $formation);
+      $formation->setValidation(true);
+      $em->persist($formation);
+      $em->flush();
 
-		// Mise à jour de la bdd si method POST ou affichage du formulaire dans le cas contraire
-		if ($request->getMethod() == 'POST')
-		{
-			$form->handleRequest($request); // permet de récupérer les valeurs des champs dans les inputs du formulaire.
-			if ($form->isValid())
-			{
-				// mise à jour de la bdd
-				$em->persist($formation);
-				$em->flush();
 
-				// Réaffichage de la liste des clients
-				$nbParPage = $this->container->getParameter('nb_par_page');
-				// On récupère l'objet Paginator
-				$lesFormations = $rep->listeFormations(1, $nbParPage);
+      $reponse = new Response(json_encode(array('message'=>'Valide')));
+      $reponse->headers->set('Content-Type','application/json');
 
-				// On calcule le nombre total de pages grâce au count($lesFormations) qui retourne le nombre total de formations
-				$nbPages = ceil(count($lesFormations) / $nbParPage);
-
-				// On donne toutes les informations nécessaires à la vue
-				return $this->render('FormArmorBundle:Admin:formation.html.twig', array(
-				  'lesFormations' => $lesFormations,
-				  'nbPages'     => $nbPages,
-				  'page'        => 1,
-				));
-			}
-		}
-		// Si formulaire pas encore soumis ou pas valide (affichage du formulaire)
-		return $this->render('FormArmorBundle:Admin:formFormation.html.twig', array('form' => $form->createView(), 'action' => 'modification'));
-    }
+      return $reponse;
+  }
 
 }

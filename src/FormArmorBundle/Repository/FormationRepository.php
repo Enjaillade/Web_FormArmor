@@ -29,7 +29,6 @@ class FormationRepository extends \Doctrine\ORM\EntityRepository
 
 		// On n'ajoute pas de critère ou tri particulier ici car on veut toutes les formations, la construction
 		// de notre requête est donc finie
-
 		// On récupère la Query à partir du QueryBuilder
 		$query = $queryBuilder->getQuery();
 
@@ -50,9 +49,9 @@ class FormationRepository extends \Doctrine\ORM\EntityRepository
 	{
 		$qb = $this->createQueryBuilder('f');
 		$query = $qb->delete('FormArmorBundle\Entity\Formation', 'f')
-		  ->where('f.id = :id')
+		  ->where('f.id = :id', 'f.confirmation = 0')
 		  ->setParameter('id', $id);
-		
+
 		return $qb->getQuery()->getResult();
 	}
 }
